@@ -1,6 +1,5 @@
 import math
 
-
 class Fraction:
     def __init__(self, numerator: int, denominator: int = 1):
         if denominator == 0:
@@ -32,10 +31,9 @@ class Fraction:
         return Fraction(new_num, new_den)
 
 
-
-
-f1 = Fraction(1, 2)
-f2 = Fraction(2, 4)  # Viene semplificata automaticamente in 1/2
-
-print(f1)       # 1/2
-print(f1 + f2)  # 1
+    def __sub__(self, other: "Fraction") -> "Fraction":
+        if not isinstance(other, Fraction):
+            other = Fraction(other)
+        new_num = self.num * other.den - other.num * self.den
+        new_den = self.den * other.den
+        return Fraction(new_num, new_den)
